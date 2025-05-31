@@ -2,91 +2,170 @@
 title: Introduction to SUTRA
 ---
 
-SUTRA, developed by TWO AI, is a family of multilingual large language models (LLMs) designed for developers, data scientists, and enterprises. Its dual-transformer architecture, combining Mixture of Experts (MoE) and dense transformer layers, delivers high performance across over 50 languages, enabling efficient, context-aware AI solutions for prototyping and production.
+SUTRA is a family of large multi-lingual language (LMLMs) models developed by TWO AI. SUTRA’s dual-transformer extends the power of both MoE and Dense AI language model architectures, delivering cost-efficient multilingual capabilities. It powers scalable AI applications for conversation, search, and advanced reasoning, ensuring high-performance across diverse languages, domains and applications. SUTRA support 50+ languages including Hindi, Gujarati, Korean, Arabic, Japanese, and more.SUTRA’s innovative dual-transformer (D2T) architecture decouples concept learning from language learning, enabling faster training cycles, cost-efficient inference, and powering advanced multilingual language and prediction models.
 
-## Optimized For
-
-- Conversational AI: Build multilingual chatbots and assistants.
-- Multilingual Understanding: Support diverse languages fluently.
-- Context-Aware Reasoning: Solve complex, multi-step problems.
-- Knowledge Extraction: Summarize and process content.
-- Retrieval-Augmented Generation (RAG): Enhance responses with external data.
+SUTRA models are ultra-fast, inference cost-efficient and flexible. Get started with an easy to use API and End-to-end Enterprise AI solutions via SUTRA Enterprise platforms.
 
 ## Key Capabilities
 
-- Multilingual Support: Fluency in over 50 languages, including Hindi, Tamil, Japanese, and Spanish, with strong Multilingual MMLU scores (e.g., Hindi: 81.44, Gujarati: 79.39).
-- High Throughput: Optimized for low-latency, real-time applications.
-- Structured Output: Generate JSON or task-specific formats via prompts.
-- Advanced Reasoning: Handle logic-driven tasks and multi-turn conversations with SUTRA-R0.
-- API Compatibility: Integrates with OpenAI-compatible APIs and tools.
-- Ecosystem Support: Compatible with LangChain, CrewAI, LiteLLM, and more.
+- **Multilingual**: Fluent in 50+ languages, including Hindi, Gujarati, Korean, Japanese, and more.
+- **Efficient Tokenization**: Cuts token usage by 3–5x for non-English languages—reducing costs. 
+- **Advanced Reasoning**: Excels at logic-driven tasks and multi-turn conversations with SUTRA-R0.
+- **API Compatibility**: Works seamlessly with OpenAI-compatible APIs and tools.
+- **Ecosystem Support**: Integrates with LangChain, CrewAI, LiteLLM, and more.
 
-## Supported Languages
-
-SUTRA supports a wide range of languages for global and regional applications:
-
-- Indian: Hindi, Bengali, Tamil, Telugu, Kannada, Marathi, Punjabi, Urdu
-- Asian: Japanese, Korean, Chinese, Thai, Vietnamese, Indonesian
-- European: English, French, Spanish, German, Portuguese, Russian
-- Other: Arabic, Turkish, Swahili
-- Efficient Tokenizer: Reduces token usage by 3-5x for non-English languages, lowering costs.
-
-## Common Use Cases
-
-| Use Case                | Description                                                      |
-| ----------------------- | ---------------------------------------------------------------- |
-| Chatbots & Assistants   | Create multilingual support for customer service or education.   |
-| Document Understanding  | Summarize, extract, or translate content.                        |
-| Search & Discovery      | Enable semantic search in multiple languages.                    |
-| Education & EdTech      | Generate quizzes or explainers in regional languages.            |
-| Multilingual Interfaces | Build products with native-language support.                     |
-| GovTech & AgriTech      | Provide local-language interfaces for rural or government users. |
 
 ## Step 1: Get Started
 
-1. Obtain an API Key: Sign up at [TWO AI SUTRA API](https://www.two.ai/sutra/api).
-2. Test on ChatSUTRA: Explore capabilities at [chat.two.ai](https://chat.two.ai).
-3. Install Dependencies:
-   ```bash
-   pip install openai
-   ```
+1. Sign up to receive free [SUTRA API KEY](https://www.two.ai/sutra/api).
+2. Explore SUTRA capabilities with [ChatSUTRA](https://chat.two.ai).
+3. Start development by installing dependencies:
+
+
+<Tabs items={["Python", "JavaScript", "React"]}>
+<Tab title="Python">
+
+```bash
+pip install openai
+```
+
+</Tab>
+<Tab title="JavaScript">
+
+```bash
+npm install openai
+```
+
+</Tab>
+<Tab title="React">
+
+```bash
+npm install openai react
+```
+
+</Tab>
+</Tabs>
 
 ## Step 2: Basic Usage with SUTRA-V2
 
+Once you have obtained an API key, you can access the SUTRA API using the example scripts below.  
+This is a non-stream example—set the <code>stream</code> parameter to <code>true</code> to receive a streaming response.
+
+
+<Tabs items={["Python", "JavaScript", "React"]}>
+<Tab title="Python">
+
 ```python
+import os
 from openai import OpenAI
 
-# Initialize SUTRA client
 client = OpenAI(
-    api_key="YOUR_SUTRA_API_KEY",
+    api_key=os.getenv("SUTRA_API_KEY", "YOUR_SUTRA_API_KEY"),
     base_url="https://api.two.ai/v2"
 )
 
-# Basic chat completion
 response = client.chat.completions.create(
     model="sutra-v2",
-    messages=[
-        {"role": "system", "content": "You are a helpful AI."},
-        {"role": "user", "content": "Explain AI in three sentences in Tamil."}
-    ],
+    messages=[{"role": "user", "content": "Tell me about Mars exploration in three sentences."}],
     max_tokens=1024,
     temperature=0.7
 )
 print(response.choices[0].message.content)
 ```
 
-## Troubleshooting
+</Tab>
+<Tab title="JavaScript">
 
-- Invalid API Key: Verify at [TWO AI SUTRA API](https://www.two.ai/sutra/api).
-- Model Not Found: Use `sutra-v2` for conversations or `sutra-r0` for reasoning. SUTRA-V1 was deprecated on March 22, 2025.
-- Rate Limits: Reduce request frequency.
-- Language Issues: Ensure prompts align with the target language’s script and syntax.
+```javascript
+import { OpenAI } from "openai";
+
+async function main() {
+  const client = new OpenAI({
+    apiKey: process.env.SUTRA_API_KEY || "YOUR_SUTRA_API_KEY",
+    baseURL: "https://api.two.ai/v2",
+  });
+
+  const response = await client.chat.completions.create({
+    model: "sutra-v2",
+    messages: [
+      {
+        role: "user",
+        content: "Tell me about Mars exploration in three sentences.",
+      },
+    ],
+    max_tokens: 1024,
+    temperature: 0.7,
+  });
+
+  console.log(response.choices[0].message.content);
+}
+
+main();
+```
+
+</Tab>
+<Tab title="React">
+
+```jsx
+import React, { useState } from "react";
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  apiKey: "YOUR_SUTRA_API_KEY",
+  baseURL: "https://api.two.ai/v2",
+  dangerouslyAllowBrowser: true, // Note: Use a backend proxy in production
+});
+
+function App() {
+  const [prompt, setPrompt] = useState("");
+  const [response, setResponse] = useState("");
+
+  const handleSubmit = async () => {
+    try {
+      const result = await client.chat.completions.create({
+        model: "sutra-v2",
+        messages: [
+          {
+            role: "user",
+            content:
+              prompt || "Tell me about Mars exploration in three sentences.",
+          },
+        ],
+        max_tokens: 1024,
+        temperature: 0.7,
+      });
+      setResponse(result.choices[0].message.content);
+    } catch (error) {
+      setResponse(`Error: ${error.message}`);
+    }
+  };
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <input
+        type="text"
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
+        placeholder="Ask SUTRA-V2 about Mars exploration..."
+      />
+      <button onClick={handleSubmit}>Submit</button>
+      <p>{response}</p>
+    </div>
+  );
+}
+
+export default App;
+```
+
+</Tab>
+</Tabs>
+
 
 ## Resources
 
-- [SUTRA API](https://www.two.ai/sutra/api)
-- [SUTRA GitHub Repository](https://github.com/sutra-dev/sutra-cookbook)
-- [ChatSUTRA](https://chat.two.ai)
+- SUTRA on [GitHub](https://github.com/sutra-dev)
+- Try [SUTRA Tokenizer](https://huggingface.co/spaces/TWO/sutra-tokenizer-comparison) on Hugging Face.
+- Try ChatSUTRA via [web](https://chat.two.ai) or download app for [iOS](https://apps.apple.com/us/app/chatsutra/id6503036417) or [Android](https://play.google.com/store/apps/details?id=com.two.chatsutra)
 - [TWO AI Blog](https://www.two.ai/blog)
 
-Build scalable, multilingual AI applications with SUTRA, tailored to your needs.
+Follow [@two_platforms](https://x.com/two_platforms) and [@sutra_dev](https://x.com/sutra_dev) on X (Twitter) for latest updates.

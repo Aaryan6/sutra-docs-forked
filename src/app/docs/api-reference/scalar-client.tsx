@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { ApiReferenceReact } from '@scalar/api-reference-react';
-import '@scalar/api-reference-react/style.css';
-import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { ApiReferenceReact } from "@scalar/api-reference-react";
+import "@scalar/api-reference-react/style.css";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export default function ScalarApiReference() {
   const { theme, resolvedTheme } = useTheme();
@@ -19,23 +19,23 @@ export default function ScalarApiReference() {
   }
 
   // Determine the actual theme to use
-  const currentTheme = theme === 'system' ? resolvedTheme : theme;
-  const isDark = currentTheme === 'dark';
+  const currentTheme = theme === "system" ? resolvedTheme : theme;
+  const isDark = currentTheme === "dark";
 
   // Debug logging
-  console.log('Theme debug:', { theme, resolvedTheme, currentTheme, isDark });
+  console.log("Theme debug:", { theme, resolvedTheme, currentTheme, isDark });
 
   return (
-    <div 
-      className="w-full h-full overflow-y-scroll" 
-      data-theme={isDark ? 'dark' : 'light'}
+    <div
+      className="w-full h-full overflow-y-scroll"
+      data-theme={isDark ? "dark" : "light"}
     >
       <ApiReferenceReact
         key={currentTheme} // Force re-render when theme changes
         configuration={{
-          url: '/api/openapi-spec',
-          layout: 'modern',
-          theme: 'default',
+          url: "/api/openapi-spec",
+          layout: "modern",
+          theme: "default",
           hideDarkModeToggle: true,
           showSidebar: true,
           customCss: `
@@ -70,6 +70,11 @@ export default function ScalarApiReference() {
               --scalar-color-accent: hsl(0 0% 98%);
             }
             
+            .scalar-app [class*="sidebar"] {
+              scrollbar-width: none !important;
+              -ms-overflow-style: none !important;
+            }
+            
             .sidebar {
               width: 280px;
               height: 100%;
@@ -83,4 +88,4 @@ export default function ScalarApiReference() {
       />
     </div>
   );
-} 
+}

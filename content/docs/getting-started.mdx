@@ -2,9 +2,9 @@
 title: Getting Started with SUTRA
 ---
 
-**SUTRA™** (Speak, Understand, and Reason in Any Language) is a family of multilingual large language models (LMLMs) by TWO AI, offering powerful AI capabilities through a simple, OpenAI-compatible API. This guide helps developers quickly integrate SUTRA-V2 for conversational AI, multilingual tasks, and more, from prototyping to production.
+SUTRA is a family of large multi-lingual language models developed by TWO AI, offering powerful AI capabilities through a simple, OpenAI-compatible API. This guide helps developers quickly integrate SUTRA-V2 for conversational AI, multilingual tasks, and more, from prototyping to production.
 
-## 📦 Installation
+## Installation
 
 Install the required SDKs for your preferred programming language:
 
@@ -32,30 +32,23 @@ npm install openai react
 </Tab>
 </Tabs>
 
-## 🔐 Authentication
+## Getting Your API Key
 
-All API requests require a SUTRA API key.
-
-### Getting Your API Key
-
-1. Visit [https://www.two.ai/sutra/api](https://www.two.ai/sutra/api).
-2. Enter your email and submit the form.
-3. Click **"Get SUTRA API Key"**.
-
-Store your key securely as an environment variable:
+Sign up to receive free [SUTRA API KEY](https://www.two.ai/sutra/api). All API requests require a SUTRA API key. Store your key securely as an environment variable:
 
 ```bash
 export SUTRA_API_KEY="your_api_key_here"
 ```
 
-In Google Colab:
+If you are using Google Colab, you can:
 
 - Click the 🔑 icon in the left sidebar.
 - Add a secret named `SUTRA_API_KEY`.
 
-## 🌐 API Reference
+## API Reference
 
 ### Base URL
+SUTRA API uses an API format compatible with OpenAI. By modifying the configuration, you can also use the OpenAI SDK or softwares compatible with the OpenAI API.
 
 ```
 https://api.two.ai/v2
@@ -83,7 +76,10 @@ Interact with SUTRA-V2 in a conversational format.
 | `temperature` | number  | No       | Controls randomness (0-1, default: 0.7)            |
 | `stream`      | boolean | No       | If `true`, responses are sent incrementally        |
 
-## 💬 Code Examples: Chat Completions
+## Invoke the Chat Completion API
+
+Once you have obtained an API key, you can access the SUTRA API using the example scripts below.  
+This is a non-stream example—set the <code>stream</code> parameter to <code>true</code> to receive a streaming response.
 
 <Tabs items={["Python", "JavaScript", "React"]}>
 <Tab title="Python">
@@ -193,19 +189,9 @@ export default App;
 </Tab>
 </Tabs>
 
-## 🔁 Streaming Responses
+### Streaming Responses
 
 Enable real-time output by setting `"stream": true` and including the `Accept: text/event-stream` header.
-
-### Request Body for Streaming
-
-```json
-{
-  "model": "sutra-v2",
-  "messages": [{ "role": "user", "content": "Write a short story in Hindi" }],
-  "stream": true
-}
-```
 
 <Tabs items={["Python", "JavaScript", "cURL"]}>
 <Tab title="Python">
@@ -285,7 +271,7 @@ curl -X POST "https://api.two.ai/v2/chat/completions" \
 </Tab>
 </Tabs>
 
-## 🌍 Multilingual Capabilities
+## Multilingual Capabilities
 
 SUTRA-V2 supports over 50 languages, including Hindi, Bengali, Gujarati, Tamil, Telugu, Japanese, Korean, English, French, German, and more. Simply provide input in any supported language, and SUTRA will respond accordingly.
 
@@ -301,7 +287,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-## 🎬 SUTRA Starter Guide Tutorial
+## SUTRA Starter Guide Tutorial
 
 Watch our comprehensive tutorial to quickly get started with SUTRA:
 
@@ -315,40 +301,20 @@ Watch our comprehensive tutorial to quickly get started with SUTRA:
   allowFullScreen
 ></iframe>
 
-## ⚠️ Error Handling
 
-SUTRA API uses standard HTTP status codes:
+## Troubleshooting
 
-- **200**: Success
-- **400**: Bad Request – Check request parameters
-- **401**: Unauthorized – Invalid API key
-- **429**: Too Many Requests – Rate limit exceeded
-- **500**: Internal Server Error – Contact support
+- Invalid API Key: Verify at [TWO AI SUTRA API](https://www.two.ai/sutra/api).
+- Model Not Found: Use `sutra-v2` for conversations or `sutra-r0` for reasoning. SUTRA-V1 was deprecated on March 22, 2025.
+- Rate Limits: Reduce request frequency.
+- Language Issues: Ensure prompts align with the target language’s script and syntax.
 
-## 📈 Rate Limits
 
-Free developer accounts have:
-
-- **50 requests/minute**
-- **5,000 requests/day**
-
-For higher limits, contact [support@two.ai](mailto:support@two.ai).
-
-## 🤝 Join the Community
-
-Join the **SUTRA Developer Community** to:
-
-- Share projects and ideas
-- Access technical support
-- Collaborate with developers
-- Explore beta features
-
-Visit [Discord](https://discord.gg/TkeqJu9M) to get started.
-
-## 🛠 Support
+## Support
 
 - **Email**: [support@two.ai](mailto:support@two.ai)
 - **Documentation**: [https://docs.two.ai](https://docs.two.ai)
-- **ChatSUTRA**: Test SUTRA at [https://chat.two.ai](https://chat.two.ai)
+- Visit [Discord](https://discord.gg/TkeqJu9M) to get started.
+
 
 Start building with **SUTRA** to create scalable, multilingual AI applications today!

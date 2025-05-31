@@ -32,7 +32,7 @@ export const Navbar = () => {
               </NavLink>
             ))}
             <NavLink
-              href="https://discord.gg/TkeqJu9M"
+              href="https://discord.com/invite/NK9h6MFpxF"
               className="bg-muted/20"
               external
             >

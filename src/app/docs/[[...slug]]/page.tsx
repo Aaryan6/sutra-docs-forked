@@ -51,12 +51,13 @@ export default async function Page({
     <DocsPage
       toc={page.data.toc}
       full={page.data.full}
-      editOnGithub={{
-        owner: "sutra",
-        repo: "sutra",
-        sha: "main",
-        path: `/docs/content/docs/${page.file.path}`,
-      }}
+      // editOnGithub={{
+      //   owner: "sutra-dev",
+      //   repo: "sutra-cookbook",
+      //   sha: "main",
+      //   // path: `/${page.file.path.split("/").slice(1).join("/").replace(".mdx", ".")}`,
+      //   path: `/${page.file.path.split("/").slice(1, -1)}`,
+      // }}
       tableOfContent={{
         style: "clerk",
         header: <div className="w-10 h-4"></div>,
